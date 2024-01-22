@@ -11,11 +11,10 @@ const timeBlockEl = $('.time-block');
 
 $(function () {
   // TODO: Add a listener for click events on the save button. This code should
-  $('#button').click(function(){ 
-    $('.time-block').each(function() {
-      const schedule = $(this).attr('id');
-      console.log(schedule);
-    })
+saveBtnEl.on('click', function(){
+  let textInput = $(this).parents('.time-block').find('.description').val();
+  let index = $(this).parents('.time-block'). children('.hour').text();
+ localStorage.setItem(textInput, index);
 })
 
 
@@ -40,11 +39,19 @@ $(function () {
   // current hour in 24-hour time?
   //
   // TODO: Add code to get any user input that was saved in localStorage and set
-    // $('.time-block').each(function(){
-    //   const saveText = timeBlockEl.attr('id');
-    //   const input = localStorage.getItem(saveText);
-    //   timeBlockEl.children('.description').val(input);
-    // })
+    function renderSchedule(){
+      let textInput = $(this).parents('.time-block').find('.description').val();
+      let index = $(this).parents('.time-block'). children('.hour').text();
+      localStorage.getItem(JSON.parse(textInput, index))
+    }
+
+    function sumbitSchedule(e){
+      e.preventDefault();
+      const scheduledToDo = descriptionEl.val();
+      
+      const schedule = renderSchedule();
+      schedule.push(scheduledToDo);
+    }
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
   //
@@ -54,6 +61,7 @@ $(function () {
     currentDayEl.text(time);
   }
   timeTravel();
+  sumbitSchedule();
 
   setInterval(timeDisplay, 1000);
   
