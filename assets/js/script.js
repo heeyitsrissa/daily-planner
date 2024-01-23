@@ -50,7 +50,7 @@ $(function () {
   
   // TODO: Add code to display the current date in the header of the page.
   function timeDisplay () {
-    const time = dayjs('').format('MMM DD, YYYY [at] hh:mm:ss a');
+    const time = dayjs().format('MMM DD, YYYY [at] hh:mm:ss a');
     currentDayEl.text(time);
   }
   timeTravel();
