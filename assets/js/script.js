@@ -26,9 +26,9 @@ $(function () {
     console.log(typeof index)
         if((i + 9)=== index){
           const scheduleEl = localStorage.getItem(index);
-          $(this).val(scheduleEl);
-        }
-
+          console.log(scheduleEl)
+          $(timeBlockEl[i]).children('.description').val(scheduleEl);
+        } 
       }
       
       
@@ -41,11 +41,16 @@ $(function () {
     $('.time-block').addClass(function() {
       return +this.id === presentHour ? 'present' : +this.id < presentHour ? 'past' : 'future'; 
     });
+    if('.past'){
+      localStorage.clear(getSchedule);
+    } else {
+      return;
+    }
 }
   
   // TODO: Add code to display the current date in the header of the page.
   function timeDisplay () {
-    const time = dayjs().format('MMM DD, YYYY [at] hh:mm:ss a');
+    const time = dayjs('').format('MMM DD, YYYY [at] hh:mm:ss a');
     currentDayEl.text(time);
   }
   timeTravel();
