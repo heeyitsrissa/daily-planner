@@ -41,11 +41,7 @@ $(function () {
     $('.time-block').addClass(function() {
       return +this.id === presentHour ? 'present' : +this.id < presentHour ? 'past' : 'future'; 
     });
-    if('.past'){
-      localStorage.clear(getSchedule);
-    } else {
-      return;
-    }
+    
 }
   
   // TODO: Add code to display the current date in the header of the page.
